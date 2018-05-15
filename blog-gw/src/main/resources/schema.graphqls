@@ -1,0 +1,35 @@
+type AuthorDTO {
+  id: ID!
+  name: String!
+}
+
+type CommentDTO {
+    id: ID!
+    text : String!
+}
+
+type PostDTO {
+    id: ID!
+    title :String!
+    body : String!
+}
+
+type TagDTO {
+    id: ID!
+    name : String!
+}
+
+type Query {
+  allAuthors: [AuthorDTO]
+  findAuthorsByName(name: String!): [AuthorDTO]
+  allComments: [CommentDTO]
+  allPosts: [PostDTO]
+  allTags: [TagDTO]
+}
+
+type Mutation {
+  addAuthor(name: String!) : AuthorDTO
+  removeAuthor(id: String!): AuthorDTO
+}
+
+

@@ -1,17 +1,15 @@
 package fr.edjaz.blog.gateway.graphql.author;
 
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import fr.edjaz.blog.gateway.api.author.Author;
 import fr.edjaz.blog.gateway.api.author.AuthorDTO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Mutation implements GraphQLMutationResolver {
-
+public class AuthorMutation {
     private final Author author;
 
-    public Mutation(Author author) {
+    public AuthorMutation(Author author) {
         this.author = author;
     }
 
@@ -24,4 +22,5 @@ public class Mutation implements GraphQLMutationResolver {
         author.deleteAuthor(id);
         return auth;
     }
+
 }

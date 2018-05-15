@@ -1,4 +1,4 @@
-package fr.edjaz.blog.gateway.api.comment;
+package fr.edjaz.blog.gateway.api.post;
 
 import java.util.List;
 import javax.validation.Valid;
@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-@AuthorizedUserFeignClient(name = "comment")
-public interface CommentClient {
+@AuthorizedUserFeignClient(name = "post")
+public interface Post {
 
-    @RequestMapping(value = "/comments", method = RequestMethod.POST,
+    @RequestMapping(value = "/api/posts", method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    CommentDTO createComment(@Valid @RequestBody CommentDTO commentDTO);
+    PostDTO createPost(@Valid @RequestBody PostDTO postDTO);
 
-    @RequestMapping(value = "/comments", method = RequestMethod.PUT,
+    @RequestMapping(value = "/api/posts", method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    CommentDTO updateComment(@Valid @RequestBody CommentDTO commentDTO);
+    PostDTO updatePost(@Valid @RequestBody PostDTO postDTO);
 
-    @RequestMapping(value = "/comments", method = RequestMethod.GET,
+    @RequestMapping(value = "/api/posts", method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    List<CommentDTO> getAllComments();
+    List<PostDTO> getAllPosts();
 
-    @RequestMapping(value = "/comments/{id}", method = RequestMethod.GET,
+    @RequestMapping(value = "/api/posts/{id}", method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    CommentDTO getComment(@PathVariable("id") Long id);
+    PostDTO getPost(@PathVariable("id") Long id);
 
-    @RequestMapping(value = "/comments/{id}", method = RequestMethod.DELETE,
+    @RequestMapping(value = "//apiposts/{id}", method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    Void deleteComment(@PathVariable("id") Long id);
+    Void deletePost(@PathVariable("id") Long id);
 
 
 }
