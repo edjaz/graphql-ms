@@ -9,6 +9,7 @@ services:
             - SPRING_DATA_MONGODB_URI=mongodb://author-mongodb:27017
             - SPRING_DATA_MONGODB_DATABASE=author
             - JHIPSTER_SLEEP=30 # gives time for the JHipster Registry to boot before the application
+            - JAVA_OPTS=-XX:InitialHeapSize=256m -XX:MaxHeapSize=256m -XX:MaxMetaspaceSize=100m -XX:CompressedClassSpaceSize=100m -XX:+AlwaysPreTouch -XX:+UseLargePages -XX:+UseG1GC -XX:+UseStringDeduplication
     author-mongodb:
         extends:
             file: mongodb.yml
