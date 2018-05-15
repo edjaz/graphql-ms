@@ -116,4 +116,12 @@ public class AuthorResource {
         authorService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id)).build();
     }
+
+
+    @GetMapping("/authors/search")
+    @Timed
+    List<AuthorDTO> findByName(@RequestParam(name = "name") String nameQuery) {
+        log.debug("recherche par name");
+        return authorService.findByName(nameQuery);
+    }
 }

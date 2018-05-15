@@ -80,4 +80,11 @@ public class AuthorServiceImpl implements AuthorService {
         log.debug("Request to delete Author : {}", id);
         authorRepository.delete(id);
     }
+
+    @Override
+    public List<AuthorDTO> findByName(String nameQuery) {
+        return authorRepository.findByNameLike(nameQuery).stream()
+            .map(authorMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
 }

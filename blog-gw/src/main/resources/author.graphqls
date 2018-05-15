@@ -1,0 +1,14 @@
+type AuthorDTO {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  allAuthors: [AuthorDTO]
+  findAuthorsByName(name: String!): [AuthorDTO]
+}
+
+type Mutation {
+  addAuthor(name: String!) : AuthorDTO
+  removeAuthor(id: String!): AuthorDTO
+}

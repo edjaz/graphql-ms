@@ -37,4 +37,6 @@ public interface AuthorService {
      * @param id the id of the entity
      */
     void delete(String id);
+
+    List<AuthorDTO> findByName(String nameQuery);
 }
