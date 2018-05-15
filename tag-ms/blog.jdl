@@ -1,0 +1,6 @@
+entity Tag {
+    name String required
+}
+
+dto all with mapstruct
+service all with serviceImpl

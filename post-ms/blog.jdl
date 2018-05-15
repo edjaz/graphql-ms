@@ -1,0 +1,9 @@
+entity Post {
+    title String required
+    body String required
+    authorId String
+    tagId String
+}
+
+dto all with mapstruct
+service all with serviceImpl

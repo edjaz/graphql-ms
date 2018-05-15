@@ -1,0 +1,27 @@
+entity Author {
+	name String required
+	idUser Long
+}
+
+entity Post {
+    title String required
+    body String required
+    authorId String
+    tagId String
+}
+
+entity Comment {
+    text String required
+    authorId String required
+    postId String required
+}
+
+entity Tag {
+    name String required
+}
+
+
+microservice Author with author
+microservice Post with post
+microservice Comment with comment
+microservice Tag with tag

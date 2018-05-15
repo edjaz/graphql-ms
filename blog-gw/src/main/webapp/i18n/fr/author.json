@@ -1,0 +1,27 @@
+
+{
+    "blogApp": {
+        "author" : {
+            "home": {
+                "title": "Authors",
+                "createLabel": "Créer un nouveau Author",
+                "createOrEditLabel": "Créer ou éditer un Author"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Author {{ id }} ?"
+            },
+            "detail": {
+                "title": "Author"
+            },
+            "name": "Name",
+            "idUser": "Id User"
+        }
+    },
+    "authorApp": {
+        "author" : {
+            "created": "Un nouveau Author a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Author avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Author avec l'identifiant {{ param }} a été supprimé"
+        }
+    }
+}

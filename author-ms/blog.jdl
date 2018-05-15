@@ -1,0 +1,8 @@
+entity Author {
+	name String required
+	idUser Long
+}
+
+
+dto all with mapstruct
+service all with serviceImpl

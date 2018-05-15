@@ -1,0 +1,10 @@
+
+entity Comment {
+    text String required
+    authorId String required
+    postId String required
+}
+
+
+dto all with mapstruct
+service all with serviceImpl
