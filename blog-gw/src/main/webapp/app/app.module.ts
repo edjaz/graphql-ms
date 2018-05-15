@@ -2,7 +2,7 @@ import './vendor.ts';
 
 import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -26,9 +26,15 @@ import {
     ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
+import {Apollo, ApolloModule} from 'apollo-angular';
+import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
+import {InMemoryCache} from 'apollo-cache-inmemory';
 
 @NgModule({
     imports: [
+        HttpClientModule, // provides HttpClient for HttpLink
+        ApolloModule,
+        HttpLinkModule,
         BrowserModule,
         BlogAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
@@ -78,4 +84,13 @@ import {
     ],
     bootstrap: [ JhiMainComponent ]
 })
-export class BlogAppModule {}
+export class BlogAppModule {
+    constructor(apollo: Apollo, httpLink: HttpLink) {
+        apollo.create({
+            // By default, this client will send queries to the
+            // `/graphql` endpoint on the same host
+            link: httpLink.create({}),
+            cache: new InMemoryCache(),
+        });
+    }
+}
