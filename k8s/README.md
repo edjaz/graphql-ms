@@ -5,18 +5,18 @@
 You will need to push your image to a registry. If you have not done so, use the following commands to tag and push the images:
 
 ```
-$ docker image tag author blog-graphql-ms/author
-$ docker push blog-graphql-ms/author
-$ docker image tag blog blog-graphql-ms/blog
-$ docker push blog-graphql-ms/blog
-$ docker image tag comment blog-graphql-ms/comment
-$ docker push blog-graphql-ms/comment
-$ docker image tag post blog-graphql-ms/post
-$ docker push blog-graphql-ms/post
-$ docker image tag security blog-graphql-ms/security
-$ docker push blog-graphql-ms/security
-$ docker image tag tag blog-graphql-ms/tag
-$ docker push blog-graphql-ms/tag
+$ docker image tag author edjaz/author
+$ docker push edjaz/author
+$ docker image tag blog edjaz/blog
+$ docker push edjaz/blog
+$ docker image tag comment edjaz/comment
+$ docker push edjaz/comment
+$ docker image tag post edjaz/post
+$ docker push edjaz/post
+$ docker image tag security edjaz/security
+$ docker push edjaz/security
+$ docker image tag tag edjaz/tag
+$ docker push edjaz/tag
 ```
 
 ## Deployment

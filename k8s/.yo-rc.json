@@ -11,7 +11,7 @@
     "directoryPath": "../",
     "serviceDiscoveryType": "eureka",
     "jwtSecretKey": "938bf67f47faf8ad6cae83ce3af1f2a5afb8bdd3",
-    "dockerRepositoryName": "blog-graphql-ms",
+    "dockerRepositoryName": "edjaz",
     "dockerPushCommand": "docker push",
     "kubernetesNamespace": "blog",
     "kubernetesServiceType": "LoadBalancer"

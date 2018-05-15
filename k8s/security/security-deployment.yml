@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: security-app
-        image: blog-graphql-ms/security
+        image: edjaz/security
         imagePullPolicy: IfNotPresent
         env:
         - name: SPRING_PROFILES_ACTIVE

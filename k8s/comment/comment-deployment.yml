@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: comment-app
-        image: blog-graphql-ms/comment
+        image: edjaz/comment
         imagePullPolicy: IfNotPresent
         env:
         - name: SPRING_PROFILES_ACTIVE

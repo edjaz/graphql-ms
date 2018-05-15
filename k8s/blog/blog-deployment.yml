@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: blog-app
-        image: blog-graphql-ms/blog
+        image: edjaz/blog
         imagePullPolicy: IfNotPresent
         env:
         - name: SPRING_PROFILES_ACTIVE
