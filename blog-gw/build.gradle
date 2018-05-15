@@ -218,7 +218,9 @@ dependencies {
     }
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 
-
+    compile 'com.graphql-java:graphql-spring-boot-starter:3.9.2'
+    compile 'com.graphql-java:graphiql-spring-boot-starter:3.9.2'
+    compile 'com.graphql-java:graphql-java-tools:5.0.0'
 }
 
 task cleanResources(type: Delete) {
