@@ -1,0 +1,19 @@
+{
+  "generator-jhipster": {
+    "appsFolders": [
+      "author-ms",
+      "blog-gw",
+      "comment-ms",
+      "post-ms",
+      "security-ms",
+      "tag-ms"
+    ],
+    "directoryPath": "../",
+    "serviceDiscoveryType": "eureka",
+    "jwtSecretKey": "938bf67f47faf8ad6cae83ce3af1f2a5afb8bdd3",
+    "dockerRepositoryName": "blog-graphql-ms",
+    "dockerPushCommand": "docker push",
+    "kubernetesNamespace": "blog",
+    "kubernetesServiceType": "LoadBalancer"
+  }
+}

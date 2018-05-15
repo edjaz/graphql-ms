@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tag
+  namespace: blog
+  labels:
+    app: tag
+spec:
+  selector:
+    app: tag
+  ports:
+  - name: web
+    port: 8084

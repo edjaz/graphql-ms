@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ServiceMonitor
+metadata:
+  name: security-app
+  namespace: blog
+  labels:
+    team: blog
+spec:
+  selector:
+    matchLabels:
+      app: security
+  endpoints:
+  - port: web
+    path: /prometheusMetrics

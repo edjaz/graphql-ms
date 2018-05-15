@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: security-postgresql
+  namespace: blog
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: security-postgresql
+    spec:
+      volumes:
+      - name: data
+        emptyDir: {}
+      containers:
+      - name: postgres
+        image: postgres:9.6.5
+        env:
+        - name: POSTGRES_USER
+          value: security
+        - name: POSTGRES_PASSWORD
+          value:
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: security-postgresql
+  namespace: blog
+spec:
+  selector:
+    app: security-postgresql
+  ports:
+  - port: 5432
