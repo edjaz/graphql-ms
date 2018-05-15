@@ -1,0 +1,27 @@
+{
+  "generator-jhipster": {
+    "appsFolders": [
+      "author-ms",
+      "blog-gw",
+      "comment-ms",
+      "post-ms",
+      "security-ms",
+      "tag-ms"
+    ],
+    "directoryPath": "../",
+    "gatewayType": "zuul",
+    "clusteredDbApps": [
+      "author-ms",
+      "comment-ms",
+      "post-ms",
+      "tag-ms"
+    ],
+    "monitoring": "elk",
+    "consoleOptions": [
+      "zipkin"
+    ],
+    "serviceDiscoveryType": "eureka",
+    "adminPassword": "admin",
+    "jwtSecretKey": "799c5bcb477c95274c9f4e3108740f7c46e24cfa"
+  }
+}
