@@ -1,6 +1,5 @@
-package fr.edjaz.blog.gateway.api;
+package fr.edjaz.blog.gateway.api.author;
 
-import java.net.URISyntaxException;
 import java.util.List;
 import javax.validation.Valid;
 

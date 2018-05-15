@@ -1,4 +1,4 @@
-package fr.edjaz.blog.gateway.api;
+package fr.edjaz.blog.gateway.api.author;
 
 
 import java.io.Serializable;

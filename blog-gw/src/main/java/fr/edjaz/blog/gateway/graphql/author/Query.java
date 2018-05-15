@@ -1,10 +1,10 @@
-package fr.edjaz.blog.gateway.graphql;
+package fr.edjaz.blog.gateway.graphql.author;
 
 import java.util.List;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import fr.edjaz.blog.gateway.api.Author;
-import fr.edjaz.blog.gateway.api.AuthorDTO;
+import fr.edjaz.blog.gateway.api.author.Author;
+import fr.edjaz.blog.gateway.api.author.AuthorDTO;
 import org.springframework.stereotype.Component;
 
 @Component
