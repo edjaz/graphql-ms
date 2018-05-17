@@ -1,21 +1,22 @@
 type AuthorDTO {
-  id: ID!
+  id: String!
   name: String!
+  posts : [PostDTO]
 }
 
 type CommentDTO {
-    id: ID!
+    id: String!
     text : String!
 }
 
 type PostDTO {
-    id: ID!
+    id: String!
     title :String!
     body : String!
 }
 
 type TagDTO {
-    id: ID!
+    id: String!
     name : String!
 }
 

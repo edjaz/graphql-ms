@@ -80,4 +80,12 @@ public class PostServiceImpl implements PostService {
         log.debug("Request to delete Post : {}", id);
         postRepository.delete(id);
     }
+
+    @Override
+    public List<PostDTO> getAllPostsByAuthor(String id) {
+        return postRepository.findAllByAuthorId(id)
+            .stream()
+            .map(postMapper::toDto)
+            .collect(Collectors.toList());
+    }
 }

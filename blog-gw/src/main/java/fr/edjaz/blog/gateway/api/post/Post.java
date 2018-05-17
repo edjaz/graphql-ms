@@ -28,11 +28,13 @@ public interface Post {
 
     @RequestMapping(value = "/api/posts/{id}", method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    PostDTO getPost(@PathVariable("id") Long id);
+    PostDTO getPost(@PathVariable("id") String id);
 
-    @RequestMapping(value = "//apiposts/{id}", method = RequestMethod.DELETE,
+    @RequestMapping(value = "/api/posts/{id}", method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    Void deletePost(@PathVariable("id") Long id);
+    Void deletePost(@PathVariable("id") String id);
 
-
+    @RequestMapping(value = "/api/author/{id}/posts", method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    List<PostDTO> getAllPostsByAuthor(@PathVariable("id") String id);
 }

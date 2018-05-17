@@ -116,4 +116,11 @@ public class PostResource {
         postService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id)).build();
     }
+
+
+    @GetMapping("/author/{id}/posts")
+    @Timed
+    public List<PostDTO> getAllPostsByAuthor(@PathVariable("id") String id){
+        return postService.getAllPostsByAuthor(id);
+    }
 }

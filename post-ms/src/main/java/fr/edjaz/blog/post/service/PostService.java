@@ -37,4 +37,6 @@ public interface PostService {
      * @param id the id of the entity
      */
     void delete(String id);
+
+    List<PostDTO> getAllPostsByAuthor(String id);
 }

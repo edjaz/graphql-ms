@@ -1,5 +1,7 @@
 package fr.edjaz.blog.post.repository;
 
+import java.util.List;
+
 import fr.edjaz.blog.post.domain.Post;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +13,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 @SuppressWarnings("unused")
 @Repository
 public interface PostRepository extends MongoRepository<Post, String> {
-
+    List<Post> findAllByAuthorId(String id);
 }

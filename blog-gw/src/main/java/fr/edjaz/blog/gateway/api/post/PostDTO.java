@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class PostDTO implements Serializable {
 
-    private Long id;
+    private String id;
     @NotNull
     private String title;
     @NotNull
@@ -17,11 +17,11 @@ public class PostDTO implements Serializable {
     private String authorId;
     private String tagId;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getTitle() {

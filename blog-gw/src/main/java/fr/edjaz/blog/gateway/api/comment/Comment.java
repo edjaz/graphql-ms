@@ -28,11 +28,11 @@ public interface Comment {
 
     @RequestMapping(value = "/api/comments/{id}", method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    CommentDTO getComment(@PathVariable("id") Long id);
+    CommentDTO getComment(@PathVariable("id") String id);
 
     @RequestMapping(value = "/api/comments/{id}", method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    Void deleteComment(@PathVariable("id") Long id);
+    Void deleteComment(@PathVariable("id") String id);
 
 
 }

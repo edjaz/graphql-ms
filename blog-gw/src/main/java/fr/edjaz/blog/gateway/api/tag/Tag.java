@@ -27,11 +27,11 @@ public interface Tag {
 
     @RequestMapping(value = "/api/tags/{id}", method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    TagDTO getTag(@PathVariable("id") Long id);
+    TagDTO getTag(@PathVariable("id") String id);
 
     @RequestMapping(value = "/api/tags/{id}", method = RequestMethod.DELETE,
         produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    Void deleteTag(@PathVariable("id") Long id);
+    Void deleteTag(@PathVariable("id") String id);
 
 
 }
