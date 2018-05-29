@@ -7,6 +7,9 @@ import { Tag } from './tag.model';
 import { TagService } from './tag.service';
 import { Principal } from '../../shared';
 
+
+
+
 @Component({
     selector: 'jhi-tag',
     templateUrl: './tag.component.html'
@@ -16,7 +19,9 @@ tags: Tag[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
+
     constructor(
+
         private tagService: TagService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
@@ -26,12 +31,13 @@ tags: Tag[];
 
     loadAll() {
         this.tagService.query().subscribe(
-            (res: HttpResponse<Tag[]>) => {
-                this.tags = res.body;
+            res => {
+                this.tags = res.data.allTags;
             },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+            error =>  this.onError(error)
+        )
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {

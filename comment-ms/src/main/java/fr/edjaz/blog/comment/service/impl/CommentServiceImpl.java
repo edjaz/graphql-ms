@@ -7,6 +7,9 @@ import fr.edjaz.blog.comment.service.dto.CommentDTO;
 import fr.edjaz.blog.comment.service.mapper.CommentMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -80,4 +83,21 @@ public class CommentServiceImpl implements CommentService {
         log.debug("Request to delete Comment : {}", id);
         commentRepository.delete(id);
     }
+
+    @Override
+    public List<CommentDTO> getAllCommentsByPost(String id) {
+        return commentRepository.findAllByPostId(id).stream()
+            .map(commentMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+
+    @Override
+    public Page<CommentDTO> getAllCommentsByPostPage(String id, Pageable pageable) {
+        Page<Comment> res = commentRepository.findAllByPostId(id, pageable);
+        List<CommentDTO> content = res.getContent().stream().map(commentMapper::toDto).collect(Collectors.toList());
+        return new PageImpl(content, pageable, res.getTotalElements());
+    }
+
+
 }

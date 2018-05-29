@@ -1,6 +1,9 @@
 package fr.edjaz.blog.post.service;
 
 import fr.edjaz.blog.post.service.dto.PostDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
@@ -39,4 +42,6 @@ public interface PostService {
     void delete(String id);
 
     List<PostDTO> getAllPostsByAuthor(String id);
+
+    Page<PostDTO> getAllPostsByAuthorPage(String id, Pageable pageable);
 }

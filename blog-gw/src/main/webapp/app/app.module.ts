@@ -1,34 +1,43 @@
 import './vendor.ts';
 
-import { NgModule, Injector } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {Injector, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { Ng2Webstorage } from 'ngx-webstorage';
-import { JhiEventManager } from 'ng-jhipster';
+import {Ng2Webstorage} from 'ngx-webstorage';
+import {JhiEventManager} from 'ng-jhipster';
 
-import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
-import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
-import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { BlogSharedModule, UserRouteAccessService } from './shared';
-import { BlogAppRoutingModule} from './app-routing.module';
-import { BlogHomeModule } from './home/home.module';
-import { BlogAdminModule } from './admin/admin.module';
-import { BlogAccountModule } from './account/account.module';
-import { BlogEntityModule } from './entities/entity.module';
-import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import {AuthExpiredInterceptor} from './blocks/interceptor/auth-expired.interceptor';
+import {ErrorHandlerInterceptor} from './blocks/interceptor/errorhandler.interceptor';
+import {NotificationInterceptor} from './blocks/interceptor/notification.interceptor';
+import {BlogSharedModule, UserRouteAccessService} from './shared';
+import {BlogAppRoutingModule} from './app-routing.module';
+import {BlogHomeModule} from './home/home.module';
+import {BlogAdminModule} from './admin/admin.module';
+import {BlogAccountModule} from './account/account.module';
+import {BlogEntityModule} from './entities/entity.module';
+import {PaginationConfig} from './blocks/config/uib-pagination.config';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
+    ActiveMenuDirective,
+    ErrorComponent,
+    FooterComponent,
     JhiMainComponent,
     NavbarComponent,
-    FooterComponent,
-    ProfileService,
     PageRibbonComponent,
-    ActiveMenuDirective,
-    ErrorComponent
+    ProfileService
 } from './layouts';
-import {Apollo, ApolloModule} from 'apollo-angular';
+import {APOLLO_OPTIONS, ApolloModule} from 'apollo-angular';
 import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
+
+
+export function createApollo(httpLink: HttpLink) {
+    return {
+        link: httpLink.create({uri: 'http://localhost:8080/graphql'}),
+        cache: new InMemoryCache({ addTypename: false }),
+    };
+}
+
 
 @NgModule({
     imports: [
@@ -37,7 +46,7 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
         HttpLinkModule,
         BrowserModule,
         BlogAppRoutingModule,
-        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
+        Ng2Webstorage.forRoot({prefix: 'jhi', separator: '-'}),
         BlogSharedModule,
         BlogHomeModule,
         BlogAdminModule,
@@ -80,17 +89,15 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
             deps: [
                 Injector
             ]
-        }
+        },
+        {
+            provide: APOLLO_OPTIONS,
+            useFactory: createApollo,
+            deps: [HttpLink],
+        },
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [JhiMainComponent]
 })
 export class BlogAppModule {
-    constructor(apollo: Apollo, httpLink: HttpLink) {
-        apollo.create({
-            // By default, this client will send queries to the
-            // `/graphql` endpoint on the same host
-            link: httpLink.create({}),
-            cache: new InMemoryCache(),
-        });
-    }
+
 }

@@ -6,6 +6,41 @@ import { SERVER_API_URL } from '../../app.constants';
 import { Tag } from './tag.model';
 import { createRequestOption } from '../../shared';
 
+import gql from 'graphql-tag';
+import {Apollo} from 'apollo-angular';
+import { ApolloClient, WatchQueryOptions, MutationOptions, ApolloQueryResult, SubscriptionOptions, ApolloClientOptions } from 'apollo-client';
+import { FetchResult } from 'apollo-link';
+
+const query = gql`
+                query {
+                    allTags {
+                        id
+                        name
+                    }
+                }
+    `;
+
+
+const find =  gql`
+                query tag ($id : String){
+                    tag(id : $id ) {
+                        id
+                        name
+                    }
+                }
+    `;
+
+
+const save =  gql`
+                mutation saveTag ($tag : TagVM){
+                    saveTag(tag : $tag ) {
+                        id
+                        name
+                    }
+                }
+    `;
+
+
 export type EntityResponseType = HttpResponse<Tag>;
 
 @Injectable()
@@ -13,29 +48,58 @@ export class TagService {
 
     private resourceUrl =  SERVER_API_URL + 'tag/api/tags';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private apollo: Apollo) { }
 
-    create(tag: Tag): Observable<EntityResponseType> {
-        const copy = this.convert(tag);
+    create(tag: Tag): Observable<FetchResult<any>> {
+        const q:MutationOptions = {
+            mutation : save,
+            variables: {
+                tag: tag,
+            }
+        };
+        return this.apollo.mutate(q);
+
+
+/*        const copy = this.convert(tag);
         return this.http.post<Tag>(this.resourceUrl, copy, { observe: 'response' })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+            .map((res: EntityResponseType) => this.convertResponse(res));*/
     }
 
-    update(tag: Tag): Observable<EntityResponseType> {
-        const copy = this.convert(tag);
+    update(tag: Tag): Observable<FetchResult<any>> {
+        const q:MutationOptions = {
+            mutation : save,
+            variables:{
+                tag : tag
+            }
+        };
+        return this.apollo.mutate(q);
+
+        /*const copy = this.convert(tag);
         return this.http.put<Tag>(this.resourceUrl, copy, { observe: 'response' })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+            .map((res: EntityResponseType) => this.convertResponse(res));*/
     }
 
-    find(id: number): Observable<EntityResponseType> {
-        return this.http.get<Tag>(`${this.resourceUrl}/${id}`, { observe: 'response'})
-            .map((res: EntityResponseType) => this.convertResponse(res));
+    find(id: number): Observable<ApolloQueryResult<any>> {
+        const q:WatchQueryOptions = {
+            query : find,
+            variables:{
+                id : id
+            }
+        };
+        return this.apollo.query<any>(q);
     }
 
-    query(req?: any): Observable<HttpResponse<Tag[]>> {
+
+    query(req?: any): Observable<ApolloQueryResult<any>> {
+        const q:WatchQueryOptions = {
+            query : query,
+            fetchPolicy : 'network-only'
+        };
+        return this.apollo.query<any>(q);
+/*
         const options = createRequestOption(req);
         return this.http.get<Tag[]>(this.resourceUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<Tag[]>) => this.convertArrayResponse(res));
+            .map((res: HttpResponse<Tag[]>) => this.convertArrayResponse(res));*/
     }
 
     delete(id: number): Observable<HttpResponse<any>> {

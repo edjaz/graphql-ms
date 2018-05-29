@@ -8,18 +8,6 @@ jhipster:
         authentication:
             jwt:
                 secret: 799c5bcb477c95274c9f4e3108740f7c46e24cfa
-    logging:
-        logstash: # forward logs to ELK
-            enabled: true
-            host: jhipster-logstash
-    metrics:
-        logs: # report metrics in the logs
-            enabled: true
-            report-frequency: 60 # in seconds
-spring:
-    zipkin:
-        base-url: http://jhipster-zipkin:9411
-        enabled: true
 
 eureka:
     client:

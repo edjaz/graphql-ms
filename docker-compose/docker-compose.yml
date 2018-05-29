@@ -99,49 +99,10 @@ services:
                 -XX:+AlwaysPreTouch -XX:+UseLargePages -XX:+UseG1GC
                 -XX:+UseStringDeduplication
             - JHIPSTER_REGISTRY_PASSWORD=admin
-    tag-mongodb-node:
-        build:
-            context: ../tag-ms/src/main/docker
-            dockerfile: mongodb/MongoDB.Dockerfile
-        command: mongod --replSet rs1 --noprealloc --smallfiles
-    tag-mongodb-config:
-        image: mongo:3.4.10
-        container_name: tag-mongodb-config
-        command: mongod --noprealloc --smallfiles --configsvr --dbpath /data/db
     tag-mongodb:
         image: mongo:3.4.10
-        command: mongos --configdb tag-mongodb-config
     
     jhipster-registry:
         extends:
             file: jhipster-registry.yml
             service: jhipster-registry
-
-    jhipster-elasticsearch:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-elasticsearch
-    jhipster-logstash:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-logstash
-        depends_on:
-            - jhipster-elasticsearch
-    jhipster-console:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-console
-        depends_on:
-            - jhipster-elasticsearch
-    jhipster-import-dashboards:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-import-dashboards
-        depends_on:
-            - jhipster-elasticsearch
-    jhipster-zipkin:
-        extends:
-            file: jhipster-console.yml
-            service: jhipster-zipkin
-        depends_on:
-            - jhipster-elasticsearch

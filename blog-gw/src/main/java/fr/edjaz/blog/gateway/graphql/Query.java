@@ -48,4 +48,8 @@ public class Query implements GraphQLQueryResolver {
     public List<CommentDTO> allComments() {
         return commentQuery.allComments();
     }
+
+    public TagDTO tag(String id) {
+        return tagQuery.tag(id);
+    }
 }

@@ -10,13 +10,8 @@
     ],
     "directoryPath": "../",
     "gatewayType": "zuul",
-    "clusteredDbApps": [
-      "author-ms",
-      "comment-ms",
-      "post-ms",
-      "tag-ms"
-    ],
-    "monitoring": "elk",
+    "clusteredDbApps": [],
+    "monitoring": "no",
     "consoleOptions": [
       "zipkin"
     ],

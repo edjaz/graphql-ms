@@ -33,8 +33,8 @@ export class TagDetailComponent implements OnInit, OnDestroy {
 
     load(id) {
         this.tagService.find(id)
-            .subscribe((tagResponse: HttpResponse<Tag>) => {
-                this.tag = tagResponse.body;
+            .subscribe(res => {
+                this.tag = res.data.tag;
             });
     }
     previousState() {

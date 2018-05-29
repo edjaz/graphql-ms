@@ -17,4 +17,8 @@ public class TagQuery {
     public List<TagDTO> allTags() {
         return tag.getAllTags();
     }
+
+    public TagDTO tag(String id){
+        return tag.getTag(id);
+    }
 }

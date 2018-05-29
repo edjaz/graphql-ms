@@ -2,21 +2,50 @@ type AuthorDTO {
   id: String!
   name: String!
   posts : [PostDTO]
+  postsPage(qlpage: Long, qlsize: Long , qldirection: Direction, field: String) : PagePostDTO
+}
+
+type PagePostDTO {
+    totalElements: Long
+    totalPages : Long
+    content : [PostDTO]
+}
+
+enum Direction {
+  ASC
+  DESC
 }
 
 type CommentDTO {
     id: String!
     text : String!
+    author : AuthorDTO
 }
 
 type PostDTO {
     id: String!
     title :String!
     body : String!
+    tag : TagDTO!
+    comments : [CommentDTO]
+    commentsPage(qlpage: Long, qlsize: Long , qldirection: Direction, field: String) : PageCommentDTO
+
+}
+
+type PageCommentDTO {
+    totalElements: Long
+    totalPages : Long
+    content : [CommentDTO]
 }
 
 type TagDTO {
     id: String!
+    name: String!
+}
+
+
+input TagVM {
+    id: String
     name : String!
 }
 
@@ -26,11 +55,13 @@ type Query {
   allComments: [CommentDTO]
   allPosts: [PostDTO]
   allTags: [TagDTO]
+  tag(id:String) : TagDTO
 }
 
 type Mutation {
   addAuthor(name: String!) : AuthorDTO
   removeAuthor(id: String!): AuthorDTO
+  saveTag(tag: TagVM): TagDTO
 }
 
 

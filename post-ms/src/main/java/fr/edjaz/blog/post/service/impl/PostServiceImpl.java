@@ -1,17 +1,20 @@
 package fr.edjaz.blog.post.service.impl;
 
-import fr.edjaz.blog.post.service.PostService;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import fr.edjaz.blog.post.domain.Post;
 import fr.edjaz.blog.post.repository.PostRepository;
+import fr.edjaz.blog.post.service.PostService;
 import fr.edjaz.blog.post.service.dto.PostDTO;
 import fr.edjaz.blog.post.service.mapper.PostMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing Post.
@@ -87,5 +90,12 @@ public class PostServiceImpl implements PostService {
             .stream()
             .map(postMapper::toDto)
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<PostDTO> getAllPostsByAuthorPage(String id, Pageable pageable) {
+        Page<Post> res = postRepository.findAllByAuthorId(id, pageable);
+        List<PostDTO> content = res.getContent().stream().map(postMapper::toDto).collect(Collectors.toList());
+        return new PageImpl(content, pageable, res.getTotalElements());
     }
 }

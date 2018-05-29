@@ -3,10 +3,12 @@ package fr.edjaz.blog.gateway.graphql;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import fr.edjaz.blog.gateway.api.author.AuthorDTO;
+import fr.edjaz.blog.gateway.api.tag.TagDTO;
 import fr.edjaz.blog.gateway.graphql.author.AuthorMutation;
 import fr.edjaz.blog.gateway.graphql.comment.CommentMutation;
 import fr.edjaz.blog.gateway.graphql.post.PostMutation;
 import fr.edjaz.blog.gateway.graphql.tag.TagMutation;
+import fr.edjaz.blog.gateway.graphql.tag.TagVM;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -32,5 +34,7 @@ public class Mutation implements GraphQLMutationResolver {
         this.postQuery = postQuery;
     }
 
-
+    public TagDTO saveTag(TagVM tag) {
+        return tagQuery.saveTag(tag);
+    }
 }

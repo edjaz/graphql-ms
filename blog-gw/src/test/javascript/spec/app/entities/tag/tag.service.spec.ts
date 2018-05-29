@@ -40,7 +40,7 @@ describe('Service Tests', () => {
             it('should return Tag', () => {
 
                 service.find(123).subscribe((received) => {
-                    expect(received.body.id).toEqual(123);
+                    expect(received.data.id).toEqual(123);
                 });
 
                 const req = httpMock.expectOne({ method: 'GET' });

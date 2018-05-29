@@ -9,6 +9,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { Tag } from './tag.model';
 import { TagPopupService } from './tag-popup.service';
 import { TagService } from './tag.service';
+import { FetchResult } from 'apollo-link';
 
 @Component({
     selector: 'jhi-tag-dialog',
@@ -36,6 +37,9 @@ export class TagDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
+
+        console.log(this.tag.name);
+
         if (this.tag.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.tagService.update(this.tag));
@@ -45,12 +49,13 @@ export class TagDialogComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<Tag>>) {
-        result.subscribe((res: HttpResponse<Tag>) =>
-            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
+    private subscribeToSaveResponse(result: Observable<FetchResult<any>>) {
+        result.subscribe((res) =>
+            this.onSaveSuccess(res.data.saveTag), (res) => this.onSaveError());
     }
 
     private onSaveSuccess(result: Tag) {
+        console.log("onSaveSuccess : " + result.name + " "+  result.id);
         this.eventManager.broadcast({ name: 'tagListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

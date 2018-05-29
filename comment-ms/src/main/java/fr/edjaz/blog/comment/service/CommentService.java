@@ -1,6 +1,9 @@
 package fr.edjaz.blog.comment.service;
 
 import fr.edjaz.blog.comment.service.dto.CommentDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
@@ -37,4 +40,9 @@ public interface CommentService {
      * @param id the id of the entity
      */
     void delete(String id);
+
+    List<CommentDTO> getAllCommentsByPost(String id);
+
+    Page<CommentDTO> getAllCommentsByPostPage(String id, Pageable pageable);
+
 }
