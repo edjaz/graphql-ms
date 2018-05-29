@@ -29,7 +29,8 @@ export class TagPopupService {
                 this.tagService.find(id)
                     .subscribe(res => {
                         //const tag: Tag = tagResponse.body;
-                        this.ngbModalRef = this.tagModalRef(component, res.data.tag);
+                        const tag = Object.assign({}, res.data.tag);
+                        this.ngbModalRef = this.tagModalRef(component, tag);
                         resolve(this.ngbModalRef);
                     });
             } else {

@@ -83,8 +83,9 @@ export class TagService {
         const q:WatchQueryOptions = {
             query : find,
             variables:{
-                id : id
-            }
+                id : id,
+            },
+            fetchPolicy : "no-cache"
         };
         return this.apollo.query<any>(q);
     }
@@ -93,7 +94,7 @@ export class TagService {
     query(req?: any): Observable<ApolloQueryResult<any>> {
         const q:WatchQueryOptions = {
             query : query,
-            fetchPolicy : 'network-only'
+            fetchPolicy : "no-cache"
         };
         return this.apollo.query<any>(q);
 /*
